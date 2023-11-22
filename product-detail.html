@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechGenius - 商品详情</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* 自定义样式 */
+    .product-image {
+      width: 100%;   /* 宽度设为100%可以保证图片宽度和容器一样宽 */
+      height: 400px;  /* 高度设为固定的400px */
+      object-fit: cover;  /* 图片会完全覆盖容器，且图片的长宽比不变，可能会有部分图片看不见 */
+    }
+    .option {
+    transition: background-color 0.3s ease;
+  }
+
+  .option:hover {
+    background-color: #f9fafb;
+  }
+
+  #size-options {
+    min-width: 100%;
+    z-index: 10;
+  }
+    /* .product-image {
+      max-height: 400px;
+      object-fit: cover;
+    } */
+
+    .product-description {
+      line-height: 1.5;
+    }
+
+    .purchase-form input[type="number"] {
+      width: 4rem;
+    }
+
+    /* 评论样式 */
+    /* 评论样式 */
+.comment-item {
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.comment-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+
+.comment-content .media-icon {
+  font-size: 1.2rem;
+  color: #333;
+  margin-right: 0.5rem;
+}
+
+.comment-content p {
+  margin: 0;
+}
+
+.comment-content .text {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.comment-content .media {
+  margin-top: 1rem;
+}
+
+.master-container {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 5px;
+}
+
+.card {
+  background: #FFFFFF;
+  /* box-shadow: 0px 187px 75px rgba(0, 0, 0, 0.01), 0px 105px 63px rgba(0, 0, 0, 0.05), 0px 47px 47px rgba(0, 0, 0, 0.09), 0px 12px 26px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1); */
+}
+
+.title {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border-bottom: 1px solid #efeff3;
+  font-weight: 700;
+  font-size: 11px;
+  color: #63656b;
+}
+
+/* cart */
+.cart {
+  border-radius: 19px 19px 7px 7px;
+}
+
+.cart .products {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.cart .products .product {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px 1fr;
+  gap: 10px;
+}
+
+.cart .products .product span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #47484b;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.cart .products .product p {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7a7c81;
+}
+
+.cart .quantity {
+  height: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 7px;
+  filter: drop-shadow(0px 1px 0px #efefef)
+    drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+}
+
+.cart .quantity label {
+  width: 20px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #47484b;
+}
+
+.cart .quantity button {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  padding-bottom: 2px;
+}
+
+.card .small {
+  font-size: 15px;
+  margin: 0 0 auto auto;
+}
+
+.card .small sup {
+  font-size: px;
+}
+
+/* coupons */
+.coupons {
+  border-radius: 7px;
+}
+
+.coupons form {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  gap: 10px;
+  padding: 10px;
+}
+
+.input_field {
+  width: auto;
+  height: 36px;
+  padding: 0 0 0 12px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #e5e5e5;
+  filter: drop-shadow(0px 1px 0px #efefef)
+    drop-shadow(0px 1px 0.5px rgba(239, 239, 239, 0.5));
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+.input_field:focus {
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 0px 2px #242424;
+  background-color: transparent;
+}
+
+.coupons form button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 18px;
+  gap: 10px;
+  width: 100%;
+  height: 36px;
+  background: linear-gradient(180deg, #4480FF 0%, #115DFC 50%, #0550ED 100%);
+  box-shadow: 0px 0.5px 0.5px #EFEFEF, 0px 1px 0.5px rgba(239, 239, 239, 0.5);
+  border-radius: 5px;
+  border: 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+/* Checkout */
+.checkout {
+  border-radius: 9px 9px 19px 19px;
+}
+
+.checkout .details {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 10px;
+  gap: 5px;
+}
+
+.checkout .details span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.checkout .details span:nth-child(odd) {
+  font-size: 11px;
+  font-weight: 700;
+  color: #707175;
+  margin: auto auto auto 0;
+}
+
+.checkout .details span:nth-child(even) {
+  font-size: 13px;
+  font-weight: 600;
+  color: #47484b;
+  margin: auto 0 auto auto;
+}
+
+.checkout .checkout--footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 20px;
+  /* background-color: #efeff3; */
+}
+
+.price {
+  position: relative;
+  font-size: 22px;
+  color: #2B2B2F;
+  font-weight: 900;
+}
+
+.price sup {
+  font-size: 13px;
+}
+
+.price sub {
+  width: fit-content;
+  position: absolute;
+  font-size: 11px;
+  color: #5F5D6B;
+  bottom: 5px;
+  display: inline-block;
+}
+
+.checkout .checkout-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 36px;
+  background: black;
+  box-shadow: 0px 0.5px 0.5px #EFEFEF, 0px 1px 0.5px rgba(239, 239, 239, 0.5);
+  border-radius: 7px;
+  border: 0;
+  outline: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+}
+
+  </style>
+</head>
+
+<body>
+  <header class="bg-gray-800">
+    <!-- Navigation -->
+    <nav class="container mx-auto px-4 py-6 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold text-white">TechGenius</a>
+      <ul class="flex space-x-4 text-white">
+        <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
+        <li><a href="about-me.html" class="hover:text-gray-300">About Us</a></li>
+        <li><a href="product.html" class="hover:text-gray-300">Products</a></li>
+        <li><a href="contact.html" class="hover:text-gray-300">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="w-full px-20">
+    <div class="flex justify-center items-start py-10">
+      <div class="w-1/2">
+          <img  id="detail-img"  src="https://cdn4.buysellads.net/uu/1/134924/1684869519-Dev-Exp-Ad_260x200_.png" class="product-image" style="border-radius: 20px;" />
+      </div>
+
+      <div class="w-1/2 pl-6">
+        <!-- 商品标题 -->
+        <h2 class="text-2xl font-bold text-black mb-2" id="detail-title">Space Series Cute Bedding Set</h2>
+        <hr class="mb-4" />
+
+        <div class="master-container">
+          <div id="stepper-container">
+            <!-- Steps will be dynamically added here -->
+          </div>
+        
+          <div id="price-container">
+            <!-- Price calculation result will be displayed here -->
+          </div>
+          <div class="card cart">
+            <div class="products">
+              <div class="product">
+                <img  id="detail-img-es" style="width: 60px;height: 60px;"  src="https://cdn4.buysellads.net/uu/1/134924/1684869519-Dev-Exp-Ad_260x200_.png" class="product-image" style="border-radius: 20px;" />
+
+                <div>
+                  <span id="ee"></span>
+                  <p>SKY KING</p>
+                  <p>AI CONTROL</p>
+                </div>
+                <div class="quantity">
+                  <button onclick="decreaseQuantity()">
+                    <svg fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" stroke="#47484b" d="M20 12L4 12"></path>
+                    </svg>
+                  </button>
+                  <label id="quantity">2</label>
+                  <button onclick="increaseQuantity()">
+                    <svg fill="none" viewBox="0 0 24 24" height="14" width="14" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" stroke="#47484b" d="M12 4V20M20 12H4"></path>
+                    </svg>
+                  </button>
+                </div>
+                <label class="price small">$400</label>
+                <script>
+                  var pricePerItem = 400.00; // 单价
+                  var quantity = 2; // 初始数量
+                
+                  function decreaseQuantity() {
+                    if (quantity > 0) {
+                      quantity -= 1;
+                      document.getElementById('quantity').innerText = quantity;
+                      updateTotal();
+                    }
+                  }
+                
+                  function increaseQuantity() {
+                    quantity += 1;
+                    document.getElementById('quantity').innerText = quantity;
+                    updateTotal();
+                  }
+                
+                  function updateTotal() {
+                    var subtotal = quantity * pricePerItem;
+                    var discount = subtotal * 0.1; // Assuming a 10% discount
+                    var total = subtotal - discount;
+                
+                    document.getElementById('subtotal').innerText = subtotal.toFixed(2);
+                    document.getElementById('discount').innerText = discount.toFixed(2);
+                    document.getElementById('total').innerText = total.toFixed(2);
+                  }
+                
+                  window.onload = function() {
+                    updateTotal();
+                  }
+                </script>
+                
+              </div>
+            </div>
+          </div>
+        
+          <div class="card checkout">
+            <label class="title">Checkout</label>
+            <div class="details">
+              <span>Your cart subtotal:</span>
+              <span id="total">Shipping...</span>
+              <span>Discount through applied coupons:</span>
+              <span id="subtotal">47.99</span>
+
+              <span>Shipping fees:</span>
+              <span id="discount">3.99</span>
+
+            </div>
+
+            <div class="checkout--footer">
+              <button class="checkout-btn">Checkout</button>
+            </div>
+          </div>
+        </div>
+
+     
+      </div>
+    </div>
+
+    <div class="my-6">
+      <h3 class="text-black text-xl font-bold mb-2">评论</h3>
+      <hr class="mb-4" />
+
+      <!-- 评论列表 -->
+        <div class="comment-list">
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    window.onload = function() {
+      // 从localStorage获取数据
+      var imgSrc = localStorage.getItem('detailImgSrc');
+      var title = localStorage.getItem('detailTitle');
+
+      // 在页面上显示数据
+      document.getElementById('detail-img').src = imgSrc;
+      document.getElementById('detail-img-es').src = imgSrc;
+
+      document.getElementById('ee').innerText = title;
+      document.getElementById('detail-title').innerText = title;
+    }
+  </script>
+<script>
+  var comments = [
+{
+  type: 'text',
+  user: 'Axios',
+  avatar: 'https://semantic-ui.com/images/avatar/small/jenny.jpg',
+  content: 'I am very satisfied with this product, the quality is excellent!'
+},
+{
+  type: 'image',
+  user: 'Vue',
+  avatar: 'https://semantic-ui.com/images/avatar2/small/lindsay.png',
+  imageUrl: './images/wecom-temp-2377417-648aec58ee4137615ee6c4520fdc9b6c.png',
+  content: 'This color is very beautiful, I really like it!'
+},
+{
+  type: 'image',
+  user: 'JavaMan',
+  avatar: 'https://static.dw.com/image/48200523_401.jpg',
+  imageUrl: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',
+  content: 'This is a video of me trying out this product, the effect is excellent!'
+},
+// Add other comments in the same way
+];
+
+comments.forEach(function(comment) {
+var commentItem = document.createElement('div');
+commentItem.className = 'comment-item';
+
+// Set the HTML content of the comment
+var contentHtml = '';
+switch (comment.type) {
+  case 'text':
+    contentHtml = '<p class="text">' + comment.content + '</p>';
+    break;
+  case 'image':
+    contentHtml = '<img src="' + comment.imageUrl + '" alt="Comment Image" class="w-40 h-auto">' +
+                  '<p class="text">' + comment.content + '</p>';
+    break;
+  case 'video':
+    contentHtml = '<video src="' + comment.videoUrl + '" class="w-64" controls></video>' +
+                  '<p class="text">' + comment.content + '</p>';
+    break;
+}
+
+commentItem.innerHTML = 
+  '<img src="' + comment.avatar + '" alt="User Avatar" class="comment-avatar">' +
+  '<div class="comment-content">' +
+    '<p class="text-sm font-bold">' + comment.user + '</p>' +
+    contentHtml +
+  '</div>';
+
+// Append the comment to the page
+document.querySelector('.comment-list').appendChild(commentItem);
+});
+
+
+  </script>
+
+  </script>
+</body>
+
+</html>

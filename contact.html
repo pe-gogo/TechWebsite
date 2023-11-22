@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechGenius - Contact Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .container-s {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
+  </style>
+</head>
+<body>
+  <header class="bg-gray-800">
+    <!-- Navigation -->
+    <nav class="container mx-auto px-4 py-6 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold text-white">TechGenius</a>
+      <ul class="flex space-x-4 text-white">
+        <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
+        <li><a href="about-me.html" class="hover:text-gray-300">About Us</a></li>
+        <li><a href="product.html" class="hover:text-gray-300">Products</a></li>
+        <li><a href="contact.html" class="hover:text-gray-300">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="container-s">
+      <div class="w-full max-w-lg">
+        <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
+        <form class="w-full" action="#" method="post">
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">First Name</label>
+              <input class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" placeholder="Enter your first name" maxlength="25" required>
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last-name">Last Name</label>
+              <input class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white" id="last-name" type="text" placeholder="Enter your last name" maxlength="25" required>
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">Email</label>
+              <input class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="email" type="email" placeholder="Enter your email address" required>
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="phone">Phone</label>
+              <input class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="phone" type="text" placeholder="Enter your phone number" pattern="[0-9]+" required>
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="query">Query/Feedback Regarding the Company</label>
+              <textarea class="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="query" placeholder="Enter your query or feedback"></textarea>
+            </div>
+          </div>
+          <div class="flex items-center justify-center">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+              Submit
+            </button>
+            <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4" type="reset">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechGenius - About Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: transform .2s ease-in-out;
+    }
+    .container {
+      max-width:1200px;
+    }.card:hover {
+  transform: scale(1.01);
+}
+
+.intro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F3F4F6;
+  overflow: hidden;
+  border-radius: 1rem;
+  height: 200px;
+}
+.intro-content {
+  text-align: center;
+}
+.intro-container img {
+  width: 100%;
+}
+
+.intro-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.intro-text {
+  color: #4B5563;
+  font-size: 1.2rem;
+}
+</style>
+</head>
+<body class="bg-gray-100">
+  <header class="bg-gray-800">
+    <!-- Navigation -->
+    <nav class="container mx-auto px-4 py-6 flex items-center justify-between">
+      <a href="#" class="text-2xl font-bold text-white">TechGenius</a>
+      <ul class="flex space-x-4 text-white">
+        <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
+        <li><a href="#" class="hover:text-gray-300">About Us</a></li>
+        <li><a href="product.html" class="hover:text-gray-300">Products</a></li>
+        <li><a href="contact.html" class="hover:text-gray-300">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container mx-auto px-8 py-16 bg-white shadow rounded-lg">
+    <!-- Company Introduction and Owner -->
+    <section class="mb-8 grid grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-2xl font-bold mb-4">About Us</h2>
+        <p class="text-gray-700">TechGenius is a website dedicated to technology enthusiasts, providing information about the latest devices, tech news, and product reviews. We source information from reliable sources and attribute the original authors.</p>
+      </div>  <div class="flex items-center">
+        <img src="./images/wecom-temp-196334-488ee08793ef81124831bb938e449df0.png" alt="Company Owner" class="w-40 h-40 rounded-full mr-4">
+        <div>
+          <h4 class="text-lg font-bold mb-1">Wu Qiuliang</h4>
+          <p class="text-gray-700">Owner, TechGenius</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Company Introduction -->
+    <section class="mb-8">
+      <div class="intro-container">
+        <img src="https://www1.djicdn.com/dps/c76b4fe734fa54f870323b7f6b73c7c1.jpg" alt="Company Introduction" class="w-full">
+      </div>
+    </section>
+    <!-- Company Video Introduction -->
+    <div>
+      <h2 class="text-2xl font-bold mb-4">Partners
+    
+      </h2>
+    </div>
+    <!-- Product Introduction -->
+    
+    <section class="mb-16 grid grid-cols-2 gap-8">
+      
+      <div class="card" style="overflow: hidden;">
+        <img src="https://play-lh.googleusercontent.com/KjAPpSxe8uRM3cg6uv2x03or3kRiNPFVdvwogIUZYINl-zUblV1tZCGsQKl-touNkg" alt="扫地机" class="w-full h-64 object-cover mb-4">
+        <div class="p-4">
+          <h4 class="text-lg font-bold mb-2">Netflex</h4>
+        </div>
+      </div>
+
+      <div class="card" style="overflow: hidden;">
+        <img src="https://techcrunch.com/wp-content/uploads/2021/07/GettyImages-1207206237.jpg?w=1024" alt="扫地机" class="w-full h-64 object-cover mb-4">
+        <div class="p-4">
+          <h4 class="text-lg font-bold mb-2">Google</h4>
+        </div>
+      </div>
+
+      <div class="card" style="overflow: hidden;">
+        <img src="https://stormsend1.djicdn.com/stormsend/uploads/4b2929d75193e8796e889501faf2d0d1.jpg" alt="扫地机" class="w-full h-64 object-cover mb-4">
+        <div class="p-4">
+          <h4 class="text-lg font-bold mb-2">Guess</h4>
+        </div>
+      </div>
+
+      <div class="card" style="overflow: hidden;">
+        <img src="https://stormsend1.djicdn.com/stormsend/uploads/26c1285ba4862a9cfd11d4c530dea866.jpg" alt="扫地机" class="w-full h-64 object-cover mb-4">
+        <div class="p-4">
+          <h4 class="text-lg font-bold mb-2">DJI</h4>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-center py-6 mt-16 text-white">
+    <p>&copy; 2023 TechGenius. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>    
